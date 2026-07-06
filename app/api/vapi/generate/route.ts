@@ -32,7 +32,7 @@ Example format: ["Question one?", "Question two?"]`;
     contents: prompt,
     });
 
-    const text = result.text.trim();
+    const text = (result.text ?? '').trim();
 
     // Parse JSON safely
     const jsonMatch = text.match(/\[[\s\S]*\]/);

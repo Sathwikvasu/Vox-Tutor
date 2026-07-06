@@ -62,7 +62,7 @@ const result = await ai.models.generateContent({
   contents: prompt,
   config: { responseMimeType: "application/json" },
 });
-const text = result.text.trim();
+const text = (result.text ?? '').trim();
 
     const jsonMatch = text.match(/\{[\s\S]*\}/);
     if (!jsonMatch) throw new Error('Invalid JSON from Gemini');
