@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { GoogleGenerativeAI } from '@google/generative-ai';
 import { saveFeedback, updateInterviewStatus } from '@/lib/actions';
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
+import { GoogleGenAI } from '@google/genai';
+
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
 
 export async function POST(req: NextRequest) {
   try {
@@ -56,9 +57,12 @@ Analyze the candidate's performance and return ONLY valid JSON (no markdown, no 
   "nextSteps": ["<actionable step 1>", "<actionable step 2>", "<actionable step 3>"]
 }`;
 
-    const model = genAI.getGenerativeModel({ model: 'gemini-3.5-flash', generationConfig: { responseMimeType: "application/json" } });
-    const result = await model.generateContent(prompt);
-    const text = result.response.text().trim();
+const result = await ai.models.generateContent({
+  model: 'gemini-3.5-flash',
+  contents: prompt,
+  config: { responseMimeType: "application/json" },
+});
+const text = result.text.trim();
 
     const jsonMatch = text.match(/\{[\s\S]*\}/);
     if (!jsonMatch) throw new Error('Invalid JSON from Gemini');

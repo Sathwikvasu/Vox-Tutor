@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { GoogleGenAI } from '@google/genai';
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
 
 export async function POST(req: NextRequest) {
   try {
@@ -27,9 +27,12 @@ Requirements:
 
 Example format: ["Question one?", "Question two?"]`;
 
-    const model = genAI.getGenerativeModel({ model: 'gemini-3.5-flash' });
-    const result = await model.generateContent(prompt);
-    const text = result.response.text().trim();
+    const result = await ai.models.generateContent({
+    model: 'gemini-3.5-flash',
+    contents: prompt,
+    });
+
+    const text = result.text.trim();
 
     // Parse JSON safely
     const jsonMatch = text.match(/\[[\s\S]*\]/);
