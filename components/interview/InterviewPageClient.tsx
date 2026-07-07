@@ -184,7 +184,7 @@ Strict rules:
         await vapi.start(process.env.NEXT_PUBLIC_VAPI_ASSISTANT_ID!, {
           model: {
             provider: 'openai',
-            model: 'gpt-4o-mini',
+            model: 'gpt-4o-mini' as any,
             messages: [
               { role: 'system', content: systemPrompt },
             ],
