@@ -181,7 +181,15 @@ Strict rules:
         // FIX 2 (Vapi model): Use 'gpt-4o-mini' via OpenAI provider — works reliably with Vapi
         // If you want to use Gemini, set up a Vapi custom LLM webhook instead
 // Connect to your preset Vapi dashboard assistant
-        await vapi.start(process.env.NEXT_PUBLIC_VAPI_ASSISTANT_ID!);
+        await vapi.start(process.env.NEXT_PUBLIC_VAPI_ASSISTANT_ID!, {
+          model: {
+            provider: 'openai',
+            model: 'gpt-4o-mini',
+            messages: [
+              { role: 'system', content: systemPrompt },
+            ],
+          },
+        });
 
       } catch (e: any) {
         if (!mounted) return;
