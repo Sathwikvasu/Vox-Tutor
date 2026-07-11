@@ -5,8 +5,9 @@ Gemini generates the questions. Vapi voices them. Firebase stores everything. Us
 
 Developed by:
 
+
+Sathwik Vasu,
 Mohith Raju,
-Sathwik Vasu
 
 ---
 
