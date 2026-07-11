@@ -7,7 +7,7 @@ Developed by:
 
 
 Sathwik Vasu,
-Mohith Raju,
+Mohith Raju
 
 ---
 
