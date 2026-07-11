@@ -5,10 +5,9 @@ Gemini generates the questions. Vapi voices them. Firebase stores everything. Us
 
 Developed by:
 
-Mohith Raju
+Mohith Raju,
 Sathwik Vasu
 
-Users sign in, pick a domain and level, and an AI voice agent conducts a real interview. Gemini generates the questions. Vapi voices them. Firebase stores everything. Users never enter any keys.
 ---
 
 ## Stack
